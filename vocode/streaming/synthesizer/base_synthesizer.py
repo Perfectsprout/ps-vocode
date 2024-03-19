@@ -149,7 +149,7 @@ class BaseSynthesizer(Generic[SynthesizerConfigType]):
     def get_typing_noise_filler_audio(self) -> FillerAudio:
         return FillerAudio(
             message=BaseMessage(text="<typing noise>"),
-            audio_data=convert_wav(
+            audio_data=convert_wav( #type: ignore
                 TYPING_NOISE_PATH,
                 output_sample_rate=self.synthesizer_config.sampling_rate,
                 output_encoding=self.synthesizer_config.audio_encoding,
@@ -238,7 +238,7 @@ class BaseSynthesizer(Generic[SynthesizerConfigType]):
         return SynthesisResult(
             chunk_generator(output_bytes),
             lambda seconds: BaseSynthesizer.get_message_cutoff_from_total_response_length(
-                synthesizer_config, message, seconds, len(output_bytes)
+                synthesizer_config, message, seconds, len(output_bytes) #type: ignore
             ),
         )
 

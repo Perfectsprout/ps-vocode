@@ -71,8 +71,8 @@ class TwilioCall(Call[TwilioOutputDevice]):
         self.base_url = base_url
         self.config_manager = config_manager
         self.twilio_config = twilio_config or TwilioConfig(
-            account_sid=getenv("TWILIO_ACCOUNT_SID"),
-            auth_token=getenv("TWILIO_AUTH_TOKEN"),
+            account_sid=getenv("TWILIO_ACCOUNT_SID"), # type: ignore
+            auth_token=getenv("TWILIO_AUTH_TOKEN"), # type: ignore
         )
         self.telephony_client = TwilioClient(
             base_url=base_url, twilio_config=self.twilio_config

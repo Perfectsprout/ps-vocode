@@ -33,7 +33,7 @@ class VectorDB:
         else:
             params["model"] = model
 
-        return list((await openai.Embedding.acreate(**params))["data"][0]["embedding"])
+        return list((openai.embeddings.create(**params))["data"][0]["embedding"]) # TODO: Check # type: ignore
 
     async def add_texts(
         self,

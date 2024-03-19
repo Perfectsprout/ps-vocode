@@ -98,10 +98,10 @@ def _create_microphone_input_and_speaker_output(
 ]:
     device_infos = sd.query_devices()
     input_device_infos = list(
-        filter(lambda device_info: device_info["max_input_channels"] > 0, device_infos)
+        filter(lambda device_info: device_info["max_input_channels"] > 0, device_infos) #type: ignore
     )
     output_device_infos = list(
-        filter(lambda device_info: device_info["max_output_channels"] > 0, device_infos)
+        filter(lambda device_info: device_info["max_output_channels"] > 0, device_infos) #type: ignore
     )
 
     if use_default_devices:
@@ -127,16 +127,16 @@ def _create_microphone_input_and_speaker_output(
             ]
 
     if logger is not None:
-        logger.info("Using microphone input device: %s", input_device_info["name"])
+        logger.info("Using microphone input device: %s", input_device_info["name"]) #type: ignore
 
     microphone_input = microphone_class(
-        input_device_info, sampling_rate=mic_sampling_rate
+        input_device_info, sampling_rate=mic_sampling_rate #type: ignore
     )
     if logger is not None:
-        logger.info("Using speaker output device: %s", output_device_info["name"])
+        logger.info("Using speaker output device: %s", output_device_info["name"]) #type: ignore
 
     speaker_output = speaker_class(
-        output_device_info, sampling_rate=speaker_sampling_rate
+        output_device_info, sampling_rate=speaker_sampling_rate #type: ignore
     )
     return microphone_input, speaker_output  # type: ignore
 

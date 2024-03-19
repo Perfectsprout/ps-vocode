@@ -9,6 +9,6 @@ def exclude_keys_recursive(d: Dict[str, Any], excluded_keys: Set[str]):
             if k not in excluded_keys
         }
     elif isinstance(d, list):
-        return [exclude_keys_recursive(v, excluded_keys) for v in d]
+        return [exclude_keys_recursive(v, excluded_keys) for v in d] #type: ignore
     else:
         return d

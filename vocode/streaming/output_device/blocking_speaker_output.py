@@ -47,7 +47,7 @@ class BlockingSpeakerOutput(BaseOutputDevice, ThreadAsyncWorker):
                 continue
 
     def consume_nonblocking(self, chunk):
-        ThreadAsyncWorker.consume_nonblocking(self, chunk)
+        ThreadAsyncWorker.consume_nonblocking(self, chunk) #type: ignore
 
     def terminate(self):
         self._ended = True

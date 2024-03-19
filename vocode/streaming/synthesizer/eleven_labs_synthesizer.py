@@ -58,7 +58,7 @@ class ElevenLabsSynthesizer(BaseSynthesizer[ElevenLabsSynthesizerConfig]):
         voice = self.elevenlabs.Voice(voice_id=self.voice_id)
         if self.stability is not None and self.similarity_boost is not None:
             voice.settings = self.elevenlabs.VoiceSettings(
-                stability=self.stability, similarity_boost=self.similarity_boost
+                stability=self.stability, similarity_boost=self.similarity_boost #type: ignore
             )
         url = ELEVEN_LABS_BASE_URL + f"text-to-speech/{self.voice_id}"
 

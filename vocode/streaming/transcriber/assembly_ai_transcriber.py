@@ -91,7 +91,7 @@ class AssemblyAITranscriber(BaseAsyncTranscriber[AssemblyAITranscriberConfig]):
         url_params = {"sample_rate": self.transcriber_config.sampling_rate}
         if self.transcriber_config.word_boost:
             url_params.update(
-                {"word_boost": json.dumps(self.transcriber_config.word_boost)}
+                {"word_boost": json.dumps(self.transcriber_config.word_boost)} #type: ignore
             )
         return ASSEMBLY_AI_URL + f"?{urlencode(url_params)}"
 
@@ -101,7 +101,7 @@ class AssemblyAITranscriber(BaseAsyncTranscriber[AssemblyAITranscriberConfig]):
 
         async with websockets.connect(
             URL,
-            extra_headers=(("Authorization", self.api_key),),
+            extra_headers=(("Authorization", self.api_key),), #type: ignore
             ping_interval=5,
             ping_timeout=20,
         ) as ws:

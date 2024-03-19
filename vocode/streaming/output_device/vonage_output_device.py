@@ -39,7 +39,7 @@ class VonageOutputDevice(BaseOutputDevice):
                 self.output_speaker.consume_nonblocking(chunk)
             for i in range(0, len(chunk), VONAGE_CHUNK_SIZE):
                 subchunk = chunk[i : i + VONAGE_CHUNK_SIZE]
-                await self.ws.send_bytes(subchunk)
+                await self.ws.send_bytes(subchunk) #type: ignore
 
     def consume_nonblocking(self, chunk: bytes):
         self.queue.put_nowait(chunk)

@@ -42,7 +42,7 @@ class AzureTranscriber(BaseThreadAsyncTranscriber[AzureTranscriberConfig]):
 
         import azure.cognitiveservices.speech as speechsdk
 
-        self.push_stream = PushAudioInputStream(format)
+        self.push_stream = PushAudioInputStream(format) #type: ignore
 
         config = speechsdk.audio.AudioConfig(stream=self.push_stream)
 
@@ -92,20 +92,20 @@ class AzureTranscriber(BaseThreadAsyncTranscriber[AzureTranscriberConfig]):
         stream = self.generator()
 
         def stop_cb(evt):
-            self.logger.debug("CLOSING on {}".format(evt))
+            self.logger.debug("CLOSING on {}".format(evt)) #type: ignore
             self.speech.stop_continuous_recognition()
             self._ended = True
 
         self.speech.recognizing.connect(lambda x: self.recognized_sentence_stream(x))
         self.speech.recognized.connect(lambda x: self.recognized_sentence_final(x))
         self.speech.session_started.connect(
-            lambda evt: self.logger.debug("SESSION STARTED: {}".format(evt))
+            lambda evt: self.logger.debug("SESSION STARTED: {}".format(evt)) #type: ignore
         )
         self.speech.session_stopped.connect(
-            lambda evt: self.logger.debug("SESSION STOPPED {}".format(evt))
+            lambda evt: self.logger.debug("SESSION STOPPED {}".format(evt)) #type: ignore
         )
         self.speech.canceled.connect(
-            lambda evt: self.logger.debug("CANCELED {}".format(evt))
+            lambda evt: self.logger.debug("CANCELED {}".format(evt)) #type: ignore
         )
 
         self.speech.session_stopped.connect(stop_cb)

@@ -34,9 +34,9 @@ class SpeechRecognitionTranscriber(BaseTranscriber):
             if self.api == SpeechRecognitionAPI.GOOGLE:
                 api_key = getenv("GOOGLE_SPEECH_RECOGNITION_API_KEY")
                 if not api_key:
-                    text = r.recognize_google(audio)
+                    text = r.recognize_google(audio) #type:ignore
                 else:
-                    text = r.recognize_google(audio, key=api_key)
+                    text = r.recognize_google(audio, key=api_key) #type:ignore
 
             elif self.api == SpeechRecognitionAPI.SPHINX:
                 # do note that sphinx requires PocketSphinx to be installed
@@ -87,7 +87,7 @@ class SpeechRecognitionTranscriber(BaseTranscriber):
                     raise ValueError(
                         "IBM Speech to Text username or password not provided"
                     )
-                text = r.recognize_ibm(audio, username=username, password=password)
+                text = r.recognize_ibm(audio, username=username, password=password) # TODO: Fix #type: ignore
 
             else:
                 raise ValueError(f"Unsupported API: {self.api}")
@@ -98,4 +98,4 @@ class SpeechRecognitionTranscriber(BaseTranscriber):
                 f"Could not request results from Speech Recognition service."
             )
 
-        return text
+        return text # type: ignore

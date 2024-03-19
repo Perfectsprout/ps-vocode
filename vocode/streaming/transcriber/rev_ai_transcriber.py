@@ -144,5 +144,5 @@ class RevAITranscriber(BaseAsyncTranscriber[RevAITranscriberConfig]):
 
     def terminate(self):
         terminate_msg = json.dumps({"type": "CloseStream"})
-        self.input_queue.put_nowait(terminate_msg)
+        self.input_queue.put_nowait(terminate_msg) #type: ignore
         self.closed = True

@@ -90,7 +90,7 @@ class DeepgramTranscriber(BaseAsyncTranscriber[DeepgramTranscriberConfig]):
 
     def terminate(self):
         terminate_msg = json.dumps({"type": "CloseStream"})
-        self.input_queue.put_nowait(terminate_msg)
+        self.input_queue.put_nowait(terminate_msg) #type: ignore
         self._ended = True
         super().terminate()
 

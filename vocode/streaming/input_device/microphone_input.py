@@ -62,4 +62,4 @@ class MicrophoneInput(BaseInputDevice):
 
     @classmethod
     def from_default_device(cls, sampling_rate: Optional[int] = None):
-        return cls(sd.query_devices(kind="input"), sampling_rate)
+        return cls(sd.query_devices(kind="input"), sampling_rate) #type: ignore

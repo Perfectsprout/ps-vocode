@@ -119,10 +119,10 @@ class ChatAnthropicAgent(RespondAgent[ChatAnthropicAgentConfig]):
 
             buffer = ""
             async for completion in streamed_response:
-                buffer += completion.completion
+                buffer += completion.completion #type: ignore
                 sentence, remainder = get_sentence_from_buffer(buffer)
                 if sentence:
-                    bot_memory_message.content = bot_memory_message.content + sentence
+                    bot_memory_message.content = bot_memory_message.content + sentence #type: ignore
                     buffer = remainder
                     yield sentence, True
                 continue

@@ -61,8 +61,8 @@ class OutboundCall:
                 "No telephony config provided, defaulting to Twilio env vars"
             )
             self.twilio_config = TwilioConfig(
-                account_sid=getenv("TWILIO_ACCOUNT_SID"),
-                auth_token=getenv("TWILIO_AUTH_TOKEN"),
+                account_sid=getenv("TWILIO_ACCOUNT_SID"), # type: ignore
+                auth_token=getenv("TWILIO_AUTH_TOKEN"), # type: ignore
             )
         self.telephony_client = self.create_telephony_client()
         assert not output_to_speaker or isinstance(

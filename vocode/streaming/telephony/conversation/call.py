@@ -51,7 +51,7 @@ class Call(StreamingConversation[TelephonyOutputDeviceType]):
     ):
         conversation_id = conversation_id or create_conversation_id()
         logger = wrap_logger(
-            logger or logging.getLogger(__name__),
+            logger or logging.getLogger(__name__), # type: ignore
             conversation_id=conversation_id,
         )
 
@@ -61,7 +61,7 @@ class Call(StreamingConversation[TelephonyOutputDeviceType]):
         self.config_manager = config_manager
         super().__init__(
             output_device,
-            transcriber_factory.create_transcriber(transcriber_config, logger=logger),
+            transcriber_factory.create_transcriber(transcriber_config, logger=logger), # type: ignore
             agent_factory.create_agent(agent_config, logger=logger),
             synthesizer_factory.create_synthesizer(synthesizer_config, logger=logger),
             conversation_id=conversation_id,

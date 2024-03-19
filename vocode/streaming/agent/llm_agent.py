@@ -101,7 +101,7 @@ class LLMAgent(RespondAgent[LLMAgentConfig]):
         return response, False
 
     async def _stream_sentences(self, prompt):
-        stream = await openai.Completion.acreate(
+        stream = await openai.chat.completions.create(#type: ignore
             prompt=prompt,
             max_tokens=self.agent_config.max_tokens,
             temperature=self.agent_config.temperature,
@@ -142,7 +142,7 @@ class LLMAgent(RespondAgent[LLMAgentConfig]):
             sentences = self._stream_sentences(prompt)
         response_buffer = ""
         async for sentence in sentences:
-            sentence = sentence.replace(f"{self.sender}:", "")
+            sentence = sentence.replace(f"{self.sender}:", "")#type: ignore
             sentence = re.sub(r"^\s+(.*)", r" \1", sentence)
             response_buffer += sentence
             self.memory[-1] = self.get_memory_entry(human_input, response_buffer)

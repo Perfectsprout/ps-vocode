@@ -40,7 +40,7 @@ class TwilioClient(BaseTelephonyClient):
             from_=from_phone,
             send_digits=digits,
             record=record,
-            **self.get_telephony_config().extra_params,
+            **self.get_telephony_config().extra_params, # type: ignore
         )
         return twilio_call.sid
 

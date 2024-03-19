@@ -10,7 +10,7 @@ def transcribe(whisper, params, ctx, audio_segment: AudioSegment) -> Tuple[str, 
         return "", 0.0
     normalized = (
         np.frombuffer(
-            audio_segment.set_frame_rate(16000).raw_data, dtype=np.int16
+            audio_segment.set_frame_rate(16000).raw_data, dtype=np.int16 #type: ignore
         ).astype("float32")
         / 32768.0
     )

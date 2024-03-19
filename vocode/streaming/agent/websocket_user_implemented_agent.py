@@ -135,15 +135,15 @@ class WebSocketUserImplementedAgent(BaseAgent[WebSocketUserImplementedAgentConfi
                         message = WebSocketAgentMessage.parse_obj(data)
                         self._handle_incoming_socket_message(message)
 
-                    except websockets.exceptions.ConnectionClosed as e:
-                        self.logger.error(
-                            f'WebSocket Agent Receive Error: Connection Closed - "{e}"'
-                        )
-                        break
-
                     except websockets.exceptions.ConnectionClosedOK as e:
                         self.logger.error(
                             f'WebSocket Agent Receive Error: Connection Closed OK - "{e}"'
+                        )
+                        break
+
+                    except websockets.exceptions.ConnectionClosed as e:
+                        self.logger.error(
+                            f'WebSocket Agent Receive Error: Connection Closed - "{e}"'
                         )
                         break
 

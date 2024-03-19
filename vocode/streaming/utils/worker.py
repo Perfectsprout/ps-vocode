@@ -239,7 +239,7 @@ class InterruptibleWorker(AsyncWorker[InterruptibleEventType]):
         if (
             self.current_task
             and not self.current_task.done()
-            and self.interruptible_event.is_interruptible
+            and self.interruptible_event.is_interruptible #type: ignore
         ):
             return self.current_task.cancel()
 

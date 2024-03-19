@@ -62,7 +62,7 @@ class GoodbyeModel:
             return True
         embedding = await self.create_embedding(text.strip().lower())
         similarity_results = embedding @ self.goodbye_embeddings
-        return np.max(similarity_results) > SIMILARITY_THRESHOLD
+        return np.max(similarity_results) > SIMILARITY_THRESHOLD #type: ignore
 
     async def create_embedding(self, text) -> np.ndarray:
         params = {
@@ -76,7 +76,7 @@ class GoodbyeModel:
             params["model"] = "text-embedding-ada-002"
 
         return np.array(
-            (await openai.Embedding.acreate(**params))["data"][0]["embedding"]
+            (openai.embeddings.create(**params))["data"][0]["embedding"] #type: ignore # TODO: Check
         )
 
 

@@ -57,4 +57,4 @@ class SpeakerOutput(BaseOutputDevice):
         cls,
         **kwargs,
     ):
-        return cls(sd.query_devices(kind="output"), **kwargs)
+        return cls(sd.query_devices(kind="output"), **kwargs) #type: ignore

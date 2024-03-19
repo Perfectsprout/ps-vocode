@@ -63,7 +63,7 @@ class MiniaudioWorker(ThreadAsyncWorker[Union[bytes, None]]):
             )
             # take the difference between the current_wav_buffer and the converted_output_bytes
             # and put the difference in the output buffer
-            new_bytes = converted_output_bytes[len(current_wav_buffer) :]
+            new_bytes = converted_output_bytes[len(current_wav_buffer) :] # type: ignore
             current_wav_output_buffer.extend(new_bytes)
 
             # chunk up new_bytes in chunks of chunk_size bytes, but keep the last chunk (less than chunk size) in the wav output buffer

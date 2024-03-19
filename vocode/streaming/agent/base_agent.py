@@ -403,16 +403,16 @@ class RespondAgent(BaseAgent[AgentConfigType]):
             return self.tracer_name_start
         if (
             hasattr(self.agent_config, "azure_params")
-            and self.agent_config.azure_params is not None
+            and self.agent_config.azure_params is not None #type: ignore
         ):
             beginning_agent_name = self.agent_config.type.rsplit("_", 1)[0]
-            engine = self.agent_config.azure_params.engine
+            engine = self.agent_config.azure_params.engine #type: ignore
             tracer_name_start = (
                 f"{AGENT_TRACE_NAME}.{beginning_agent_name}_azuregpt-{engine}"
             )
         else:
             optional_model_name = (
-                f"-{self.agent_config.model_name}"
+                f"-{self.agent_config.model_name}" #type: ignore
                 if hasattr(self.agent_config, "model_name")
                 else ""
             )

@@ -76,7 +76,7 @@ class VonageClient(BaseTelephonyClient):
             to_phone,
             from_phone,
             self.create_call_ncco(
-                self.base_url, conversation_id, record, is_outbound=True
+                self.base_url, conversation_id, record, is_outbound=True # type: ignore
             ),
             digits,
         )

@@ -71,10 +71,10 @@ class VonageCall(Call[VonageOutputDevice]):
         self.base_url = base_url
         self.config_manager = config_manager
         self.vonage_config = vonage_config or VonageConfig(
-            api_key=getenv("VONAGE_API_KEY"),
-            api_secret=getenv("VONAGE_API_SECRET"),
-            application_id=getenv("VONAGE_APPLICATION_ID"),
-            private_key=getenv("VONAGE_PRIVATE_KEY"),
+            api_key=getenv("VONAGE_API_KEY"), # type: ignore
+            api_secret=getenv("VONAGE_API_SECRET"), # type: ignore
+            application_id=getenv("VONAGE_APPLICATION_ID"), # type: ignore
+            private_key=getenv("VONAGE_PRIVATE_KEY"), # type: ignore
         )
         self.telephony_client = VonageClient(
             base_url=base_url, vonage_config=self.vonage_config

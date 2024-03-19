@@ -30,7 +30,7 @@ class TwilioOutputDevice(BaseOutputDevice):
     async def process(self):
         while self.active:
             message = await self.queue.get()
-            await self.ws.send_text(message)
+            await self.ws.send_text(message) #type: ignore
 
     def consume_nonblocking(self, chunk: bytes):
         twilio_message = {

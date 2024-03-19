@@ -53,12 +53,12 @@ class BaseAction(Generic[ActionConfigType, ParametersType, ResponseType]):
         parameters_schema = self.parameters_type.schema()
         parameters_schema = exclude_keys_recursive(parameters_schema, {"title"})
         if self.should_respond:
-            parameters_schema["properties"][
+            parameters_schema["properties"][ #type: ignore
                 "user_message"
             ] = self._user_message_param_info()
-            required = parameters_schema.get("required", [])
+            required = parameters_schema.get("required", []) #type: ignore
             required.append("user_message")
-            parameters_schema["required"] = required
+            parameters_schema["required"] = required #type: ignore
 
         return {
             "name": self.action_config.type,

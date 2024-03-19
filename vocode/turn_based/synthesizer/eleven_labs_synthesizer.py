@@ -32,11 +32,11 @@ class ElevenLabsSynthesizer(BaseSynthesizer):
             )
 
     def synthesize(self, text: str) -> AudioSegment:
-        self.elevenlabs.set_api_key(self.api_key)
+        self.elevenlabs.set_api_key(self.api_key) #type: ignore
         voice = self.elevenlabs.Voice(voice_id=self.voice_id)
         if self.stability is not None and self.similarity_boost is not None:
             voice.settings = self.elevenlabs.VoiceSettings(
-                stability=self.stability, similarity_boost=self.similarity_boost
+                stability=self.stability, similarity_boost=self.similarity_boost #type: ignore
             )
 
         audio = self.elevenlabs.generate(text, voice=voice)

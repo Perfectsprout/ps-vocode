@@ -4,7 +4,7 @@ import logging
 
 class ConversationLoggerAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
-        return '[%s] %s' % (self.extra['conversation_id'], msg), kwargs
+        return '[%s] %s' % (self.extra['conversation_id'], msg), kwargs #type: ignore
 
 def wrap_logger(logger, conversation_id):
     if isinstance(logger, ConversationLoggerAdapter):
