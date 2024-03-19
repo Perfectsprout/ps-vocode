@@ -1,7 +1,7 @@
 import logging
 from typing import List, Optional
 
-from langchain import OpenAI
+from langchain_community.llms import OpenAI
 from vocode.streaming.agent.llm_agent import LLMAgent
 from ..models.agent import InformationRetrievalAgentConfig, LLMAgentConfig
 
