@@ -43,7 +43,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
             openai.api_key = getenv("AZURE_OPENAI_API_KEY")
         else:
             openai.api_type = "open_ai"
-            openai.base_url = "https://api.openai.com/v1"
+            openai.base_url = "https://api.openai.com/v1/"
             openai.api_version = None
             openai.api_key = openai_api_key or getenv("OPENAI_API_KEY")
         if not openai.api_key:
@@ -126,7 +126,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
             text = self.first_response
         else:
             chat_parameters = self.get_chat_parameters()
-            chat_completion = await openai.chat.completions.create(**chat_parameters)
+            chat_completion = openai.chat.completions.create(**chat_parameters)
             text = chat_completion.choices[0].message.content
         self.logger.debug(f"LLM response: {text}")
         return text, False
@@ -147,14 +147,16 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
         if self.agent_config.vector_db_config:
             try:
                 docs_with_scores = await self.vector_db.similarity_search_with_score(
-                    self.transcript.get_last_user_message()[1] #type: ignore
+                    self.transcript.get_last_user_message()[1]  # type: ignore
                 )
                 docs_with_scores_str = "\n\n".join(
                     [
                         "Document: "
                         + doc[0].metadata["source"]
                         + f" (Confidence: {doc[1]})\n"
-                        + doc[0].lc_kwargs["page_content"].replace(r"\n", "\n") #TODO: check #type: ignore
+                        + doc[0]
+                        .lc_kwargs["page_content"]
+                        .replace(r"\n", "\n")  # TODO: check #type: ignore
                         for doc in docs_with_scores
                     ]
                 )
@@ -172,7 +174,7 @@ class ChatGPTAgent(RespondAgent[ChatGPTAgentConfig]):
         else:
             chat_parameters = self.get_chat_parameters()
         chat_parameters["stream"] = True
-        stream = await openai.chat.completions.create(**chat_parameters)
+        stream = openai.chat.completions.create(**chat_parameters)
         async for message in collate_response_async(
             openai_get_tokens(stream), get_functions=True
         ):
