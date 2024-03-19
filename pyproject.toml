@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vocode"
-version = "0.1.0"
+version = "0.1.111"
 authors = [
   { name="Jatin Jangir", email="jatinjangir24@gmail.com" },
 ]

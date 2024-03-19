@@ -81,7 +81,7 @@ class TwilioCall(Call[TwilioOutputDevice]):
         self.latest_media_timestamp = 0
 
     def create_state_manager(self) -> TwilioCallStateManager:
-        return TwilioCallStateManager(self)
+        return TwilioCallStateManager(self) # type: ignore
 
     async def attach_ws_and_start(self, ws: WebSocket):
         super().attach_ws(ws)

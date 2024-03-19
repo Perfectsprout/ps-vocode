@@ -86,7 +86,7 @@ class VonageCall(Call[VonageOutputDevice]):
             )
 
     def create_state_manager(self) -> VonageCallStateManager:
-        return VonageCallStateManager(self)
+        return VonageCallStateManager(self) # type: ignore
 
     # TODO(EPD-186) - make this function async and use aiohttp with the vonage client
     def send_dtmf(self, digits: str):

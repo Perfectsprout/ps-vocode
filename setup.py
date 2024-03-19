@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='vocode',
-    version='0.1.0',    
+    version='0.1.111',    
     description='Vocode Fork for PerfectSprout Ussage.',
     url='https://github.com/Perfectsprout/ps-vocode',
     author='Jatin Jangir',
