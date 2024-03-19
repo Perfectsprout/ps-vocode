@@ -7,7 +7,6 @@ setup(
     url='https://github.com/Perfectsprout/ps-vocode',
     author='Jatin Jangir',
     author_email='jatinjangir24@gmail.com',
-    license='BSD 2-clause',
     packages=find_packages(),
     install_requires=[],
 )
