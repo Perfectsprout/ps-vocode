@@ -49,9 +49,11 @@ async def collate_response_async(
             possible_list_item = bool(re.match(r"^\d+[ .]", buffer))
             ends_with_money = bool(re.findall(r"\$\d+.$", buffer))
             if re.findall(
-                list_item_ending_pattern
-                if possible_list_item
-                else sentence_endings_pattern,
+                (
+                    list_item_ending_pattern
+                    if possible_list_item
+                    else sentence_endings_pattern
+                ),
                 token,
             ):
                 if not ends_with_money:
@@ -72,13 +74,13 @@ async def collate_response_async(
 
 async def openai_get_tokens(gen) -> AsyncGenerator[Union[str, FunctionFragment], None]:
     for event in gen:
-        choices = event.get("choices", [])
+        choices = event.choices
         if len(choices) == 0:
             continue
         choice = choices[0]
         if choice.finish_reason:
             break
-        delta = choice.get("delta", {})
+        delta = choice.delta
         if "text" in delta and delta["text"] is not None:
             token = delta["text"]
             yield token
@@ -87,12 +89,16 @@ async def openai_get_tokens(gen) -> AsyncGenerator[Union[str, FunctionFragment],
             yield token
         elif "function_call" in delta and delta["function_call"] is not None:
             yield FunctionFragment(
-                name=delta["function_call"]["name"]
-                if "name" in delta["function_call"]
-                else "",
-                arguments=delta["function_call"]["arguments"]
-                if "arguments" in delta["function_call"]
-                else "",
+                name=(
+                    delta["function_call"]["name"]
+                    if "name" in delta["function_call"]
+                    else ""
+                ),
+                arguments=(
+                    delta["function_call"]["arguments"]
+                    if "arguments" in delta["function_call"]
+                    else ""
+                ),
             )
 
 
