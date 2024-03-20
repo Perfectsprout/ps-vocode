@@ -71,7 +71,7 @@ async def collate_response_async(
 
 
 async def openai_get_tokens(gen) -> AsyncGenerator[Union[str, FunctionFragment], None]:
-    async for event in gen:
+    for event in gen:
         choices = event.get("choices", [])
         if len(choices) == 0:
             continue
