@@ -26,7 +26,7 @@ Information to provide to the person who answers the phone: this is a robot call
 The AI begins the call by introducing itself and who it represents.
         """
         super().__init__(
-            LLMAgentConfig(
+            LLMAgentConfig( # type: ignore
                 prompt_preamble=prompt_preamble,
             ),
             logger=logger,

@@ -461,7 +461,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
         self.end_time: Optional[float] = None
 
     def create_state_manager(self) -> ConversationStateManager:
-        return ConversationStateManager(conversation=self)
+        return ConversationStateManager(conversation=self) # type: ignore
 
     async def start(self, mark_ready: Optional[Callable[[], Awaitable[None]]] = None):
         self.transcriber.start()

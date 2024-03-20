@@ -51,7 +51,7 @@ class SynthesizerConfig(TypedModel, type=SynthesizerType.BASE.value):
     def from_output_device(cls, output_device: BaseOutputDevice, **kwargs):
         return cls(
             sampling_rate=output_device.sampling_rate,
-            audio_encoding=output_device.audio_encoding,
+            audio_encoding=output_device.audio_encoding, # type: ignore
             **kwargs
         )
 
@@ -60,7 +60,7 @@ class SynthesizerConfig(TypedModel, type=SynthesizerType.BASE.value):
     def from_telephone_output_device(cls, **kwargs):
         return cls(
             sampling_rate=DEFAULT_SAMPLING_RATE,
-            audio_encoding=DEFAULT_AUDIO_ENCODING,
+            audio_encoding=DEFAULT_AUDIO_ENCODING, # type: ignore
             **kwargs
         )
 
@@ -68,7 +68,7 @@ class SynthesizerConfig(TypedModel, type=SynthesizerType.BASE.value):
     def from_output_audio_config(cls, output_audio_config: OutputAudioConfig, **kwargs):
         return cls(
             sampling_rate=output_audio_config.sampling_rate,
-            audio_encoding=output_audio_config.audio_encoding,
+            audio_encoding=output_audio_config.audio_encoding, # type: ignore
             **kwargs
         )
 

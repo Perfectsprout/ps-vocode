@@ -24,14 +24,14 @@ class TypedModel(BaseModel):
         cls._subtypes_.append((type, cls))
 
     @classmethod
-    def get_cls(_cls, type):
+    def get_cls(_cls, type): # type: ignore
         for t, cls in _cls._subtypes_:
             if t == type:
                 return cls
         raise ValueError(f"Unknown type {type}")
 
     @classmethod
-    def get_type(_cls, cls_name):
+    def get_type(_cls, cls_name): # type: ignore
         for t, cls in _cls._subtypes_:
             if cls.__name__ == cls_name:
                 return t

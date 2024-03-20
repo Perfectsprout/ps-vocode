@@ -71,7 +71,7 @@ class TranscriberConfig(TypedModel, type=TranscriberType.BASE.value):
     ):
         return cls(
             sampling_rate=input_device.sampling_rate,
-            audio_encoding=input_device.audio_encoding,
+            audio_encoding=input_device.audio_encoding, # type: ignore
             chunk_size=input_device.chunk_size,
             endpointing_config=endpointing_config,
             **kwargs,
@@ -86,7 +86,7 @@ class TranscriberConfig(TypedModel, type=TranscriberType.BASE.value):
     ):
         return cls(
             sampling_rate=DEFAULT_SAMPLING_RATE,
-            audio_encoding=DEFAULT_AUDIO_ENCODING,
+            audio_encoding=DEFAULT_AUDIO_ENCODING, # type: ignore
             chunk_size=DEFAULT_CHUNK_SIZE,
             endpointing_config=endpointing_config,
             **kwargs,
@@ -96,7 +96,7 @@ class TranscriberConfig(TypedModel, type=TranscriberType.BASE.value):
     def from_input_audio_config(cls, input_audio_config: InputAudioConfig, **kwargs):
         return cls(
             sampling_rate=input_audio_config.sampling_rate,
-            audio_encoding=input_audio_config.audio_encoding,
+            audio_encoding=input_audio_config.audio_encoding, # type: ignore
             chunk_size=input_audio_config.chunk_size,
             downsampling=input_audio_config.downsampling,
             **kwargs,

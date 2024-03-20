@@ -12,7 +12,7 @@ import logging
 import aiohttp
 
 
-class RESTfulUserImplementedAgent(RespondAgent[RESTfulUserImplementedAgentConfig]):
+class RESTfulUserImplementedAgent(RespondAgent[RESTfulUserImplementedAgentConfig]): # type: ignore
     def __init__(
         self,
         agent_config: RESTfulUserImplementedAgentConfig,

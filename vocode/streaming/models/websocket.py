@@ -44,7 +44,7 @@ class TranscriptMessage(WebSocketMessage, type=WebSocketMessageType.TRANSCRIPT):
 
     @classmethod
     def from_event(cls, event: TranscriptEvent):
-        return cls(text=event.text, sender=event.sender, timestamp=event.timestamp)
+        return cls(text=event.text, sender=event.sender, timestamp=event.timestamp) # type: ignore
 
 
 class StartMessage(WebSocketMessage, type=WebSocketMessageType.START):

@@ -42,7 +42,7 @@ class ChatGPTAgent(BaseAgent):
         if initial_message:
             self.memory.chat_memory.add_ai_message(initial_message)
         self.llm = ChatOpenAI(  # type: ignore
-            model_name=model_name,
+            model=model_name,
             temperature=temperature,
             max_tokens=max_tokens,
         )

@@ -5,7 +5,6 @@ import aiohttp
 
 from vocode.streaming.models.synthesizer import (
     AzureSynthesizerConfig,
-    CoquiTTSSynthesizerConfig,
     ElevenLabsSynthesizerConfig,
     GTTSSynthesizerConfig,
     GoogleSynthesizerConfig,
@@ -26,8 +25,6 @@ from vocode.streaming.synthesizer.polly_synthesizer import PollySynthesizer
 from vocode.streaming.synthesizer.stream_elements_synthesizer import (
     StreamElementsSynthesizer,
 )
-from vocode.streaming.synthesizer.coqui_tts_synthesizer import CoquiTTSSynthesizer
-
 
 class SynthesizerFactory:
     def create_synthesizer(
@@ -62,10 +59,6 @@ class SynthesizerFactory:
             )
         elif isinstance(synthesizer_config, StreamElementsSynthesizerConfig):
             return StreamElementsSynthesizer(
-                synthesizer_config, logger=logger, aiohttp_session=aiohttp_session
-            )
-        elif isinstance(synthesizer_config, CoquiTTSSynthesizerConfig):
-            return CoquiTTSSynthesizer(
                 synthesizer_config, logger=logger, aiohttp_session=aiohttp_session
             )
         elif isinstance(synthesizer_config, PollySynthesizerConfig):
