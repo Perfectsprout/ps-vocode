@@ -6,12 +6,11 @@ import openai
 from typing import AsyncGenerator, Optional, Tuple
 
 import logging
-from pydantic.v1 import BaseModel
 
 from vocode import getenv
 from vocode.streaming.action.factory import ActionFactory
 from vocode.streaming.agent.base_agent import RespondAgent
-from vocode.streaming.models.actions import FunctionCall, FunctionFragment
+from vocode.streaming.models.actions import FunctionCall
 from vocode.streaming.models.agent import ChatGPTAgentConfig
 from vocode.streaming.agent.utils import (
     format_openai_chat_messages_from_transcript,
@@ -19,7 +18,6 @@ from vocode.streaming.agent.utils import (
     openai_get_tokens,
     vector_db_result_to_openai_chat_message,
 )
-from vocode.streaming.models.events import Sender
 from vocode.streaming.models.transcript import Transcript
 from vocode.streaming.vector_db.factory import VectorDBFactory
 

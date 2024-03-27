@@ -273,7 +273,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
                 if isinstance(agent_response, AgentResponseStop):
                     self.conversation.logger.debug("Agent requested to stop")
                     item.agent_response_tracker.set()
-                    await self.conversation.terminate()
+                    await self.conversation.terminate()  # type: ignore
                     return
 
                 agent_response_message = typing.cast(
@@ -461,7 +461,7 @@ class StreamingConversation(Generic[OutputDeviceType]):
         self.end_time: Optional[float] = None
 
     def create_state_manager(self) -> ConversationStateManager:
-        return ConversationStateManager(conversation=self) # type: ignore
+        return ConversationStateManager(conversation=self)  # type: ignore
 
     async def start(self, mark_ready: Optional[Callable[[], Awaitable[None]]] = None):
         self.transcriber.start()

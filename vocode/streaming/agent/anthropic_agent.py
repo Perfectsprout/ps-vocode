@@ -1,5 +1,5 @@
+# TODO: THis is broken.
 from typing import AsyncGenerator, Optional, Tuple
-from langchain.chains import ConversationChain
 import logging
 
 from typing import Optional, Tuple
@@ -8,9 +8,9 @@ from vocode.streaming.agent.base_agent import RespondAgent
 
 from vocode.streaming.agent.utils import get_sentence_from_buffer
 
-from langchain.chains import ConversationChain
+from langchain.chains.conversation.base import ConversationChain
 from langchain.schema import ChatMessage, AIMessage, HumanMessage
-from langchain_community.chat_models import ChatAnthropic
+from langchain_anthropic import ChatAnthropic
 import logging
 from vocode import getenv
 
